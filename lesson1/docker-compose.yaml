@@ -1,0 +1,24 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      MONGO_URI: ${MONGO_URI:-mongodb://mongo:27017/cnf}
+    depends_on:
+      - mongo
+    networks:
+      - cnf-network
+
+  mongo:
+    image: mongo:7
+    volumes:
+      - mongo-data:/data/db   # named volume: sopravvive al riavvio dei container 
+    networks:
+      - cnf-network
+
+volumes:
+  mongo-data:
+
+networks:
+  cnf-network:
