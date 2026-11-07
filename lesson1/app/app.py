@@ -1,6 +1,6 @@
 import os
-from flask import Flask, jsonify, request
-from pymongo import MongoClient
+from flask import Flask, jsonify, request # pyright: ignore[reportMissingImports]
+from pymongo import MongoClient # pyright: ignore[reportMissingImports]
 
 app = Flask(__name__)
 users = MongoClient(os.environ.get("MONGO_URI", "mongodb://localhost:27017/cnf")).get_default_database().users
