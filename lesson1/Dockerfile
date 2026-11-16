@@ -1,6 +1,8 @@
 # Immagine piccola
 FROM python:3.12-slim
 
+# L'ordine delle istruzioni conta!
+
 WORKDIR /app
 
 # Prima solo le dipendenze: questo layer resta in cache finche' requirements.txt non cambia

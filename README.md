@@ -7,3 +7,5 @@ Ciclo di 3 lezioni del K!nd4SUS Cybersecurity Team.
 | [1 - Container](lesson1/) | 18/11 | container, immagini, Dockerfile, networking, storage, Compose |
 
 Requisiti: Docker.
+
+Materiale della prima lezione: [slide PDF](lesson1/slides/containers.pdf).

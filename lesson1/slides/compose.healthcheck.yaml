@@ -1,0 +1,32 @@
+# Estensione didattica del Compose originale. Eseguire da lesson1/:
+# docker compose -f docker-compose.yaml -f slides/compose.healthcheck.yaml up --build -d
+services:
+  web:
+    depends_on:
+      mongo:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - >-
+          import urllib.request;
+          urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2)
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+  mongo:
+    healthcheck:
+      test:
+        - CMD
+        - mongosh
+        - --quiet
+        - --eval
+        - "quit(db.adminCommand('ping').ok ? 0 : 1)"
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
