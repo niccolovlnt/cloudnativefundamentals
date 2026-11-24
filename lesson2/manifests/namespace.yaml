@@ -1,0 +1,5 @@
+# da dove inizia tutto
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cnf

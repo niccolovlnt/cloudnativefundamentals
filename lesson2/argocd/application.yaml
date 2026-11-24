@@ -1,0 +1,22 @@
+#dopo il fork sostituire repoURL con quello del proprio fork.
+# mi raccomando di lasciare il repo pubblico, altrimenti argo non vedra' il repo se non autenticato
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cnf
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/niccolovlnt/cloudnativefundamentals.git
+    targetRevision: main
+    path: lesson2/manifests
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cnf
+  syncPolicy:
+    automated:
+      prune: true      # cancella cio' che non e' piu' in Git
+      selfHeal: true   # annulla le modifiche manuali sul cluster
+    syncOptions:
+      - CreateNamespace=true

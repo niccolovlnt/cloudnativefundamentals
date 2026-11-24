@@ -1,0 +1,14 @@
+# Cluster con un nodo, che fa da control plane e da worker.
+# il mapping delle porte serve per accedere al cluster da localhost
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cnf
+nodes:
+  - role: control-plane
+    extraPortMappings:
+      - containerPort: 80
+        hostPort: 80
+        listenAddress: "127.0.0.1"
+      - containerPort: 443
+        hostPort: 443
+        listenAddress: "127.0.0.1"

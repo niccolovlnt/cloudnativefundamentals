@@ -1,0 +1,22 @@
+# vartiabili di configurazione senza dati sensibili
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: web-config
+  namespace: cnf
+data:
+  PORT: "8000"
+  MONGO_HOST: mongo      # nome del service, cioe' il dns interno del cluster
+  MONGO_DB: cnf
+---
+# le credenziali, come .env visto in Docker Compose
+# non si salvano i manifest dei Secret in Git!
+apiVersion: v1
+kind: Secret
+metadata:
+  name: mongo-credentials
+  namespace: cnf
+type: Opaque
+stringData:
+  MONGO_USER: cnfadmin
+  MONGO_PASSWORD: demo1234
